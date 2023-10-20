@@ -4,14 +4,11 @@ import java.net.URI;
 class Handler implements URLHandler {
     // The one bit of state on the server: a number that will be manipulated by
     // various requests.
-    int num = 0;
+    String message = "";
 
     public String handleRequest(URI url) {
         if (url.getPath().equals("/")) {
-            return String.format("Number: %d", num);
-        } else if (url.getPath().equals("/increment")) {
-            num += 1;
-            return String.format("Number incremented!");
+            return String.format(message);
         } else {
             if (url.getPath().contains("/add")) {
                 String[] parameters = url.getQuery().split("=");
@@ -25,7 +22,7 @@ class Handler implements URLHandler {
     }
 }
 
-class NumberServer {
+class StringServer {
     public static void main(String[] args) throws IOException {
         if(args.length == 0){
             System.out.println("Missing port number! Try any number between 1024 to 49151");
