@@ -10,11 +10,11 @@ class Handler implements URLHandler {
         if (url.getPath().equals("/")) {
             return String.format(message);
         } else {
-            if (url.getPath().contains("/add")) {
+            if (url.getPath().contains("/add-message")) {
                 String[] parameters = url.getQuery().split("=");
-                if (parameters[0].equals("count")) {
-                    num += Integer.parseInt(parameters[1]);
-                    return String.format("Number increased by %s! It's now %d", parameters[1], num);
+                if (parameters[0].equals("s")) {
+                    message += (parameters[1]+ "\n");
+                    return String.format(message);
                 }
             }
             return "404 Not Found!";
