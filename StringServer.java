@@ -5,6 +5,7 @@ class Handler implements URLHandler {
     // The one bit of state on the server: a number that will be manipulated by
     // various requests.
     String message = "";
+    int num = 0;
 
     public String handleRequest(URI url) {
         if (url.getPath().equals("/")) {
@@ -14,7 +15,8 @@ class Handler implements URLHandler {
                 String[] parameters = url.getQuery().split("=");
                 if (parameters[0].equals("s")) {
                     message += (parameters[1]+ "\n");
-                    return String.format(message);
+                    num += 1;
+                    return String.format(num + ". " + message);
                 }
             }
             return "404 Not Found!";
